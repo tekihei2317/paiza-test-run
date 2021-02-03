@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Paiza Test Runner",
+  "version": "1.0",
+  "description": "Paizaのテストケースの実行を自動化する拡張機能",
+  "browser_action": {
+    "default_title": "Paiza Test Runner",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://paiza.jp/*"],
+      "js": ["scripts/main.js"]
+    }
+  ]
+}
