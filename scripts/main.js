@@ -6,9 +6,19 @@
 
   async function setEvent() {
     chrome.runtime.onMessage.addListener(async function (request, sender, sendResponse) {
-      await runTests();
-      sendResponse("finished");
+      console.log(request);
+      if (request.message === "test") {
+        await runTests();
+      } else {
+        await selectLanguage(request.value);
+      }
+      // sendResponse("finished");
     });
+  }
+
+  async function selectLanguage(languageId) {
+    const languageSelect = document.getElementById("language_id");
+    languageSelect.value = languageId;
   }
 
   async function runTests() {
