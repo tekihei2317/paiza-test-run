@@ -1,3 +1,7 @@
 body {
   width: 200px;
 }
+
+.option-title {
+  margin-bottom: 4px;
+}

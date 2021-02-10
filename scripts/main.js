@@ -2,23 +2,32 @@
 {
   window.addEventListener("load", () => {
     setEvent();
+    setDefaultLanguage();
   });
 
   async function setEvent() {
     chrome.runtime.onMessage.addListener(async function (request, sender, sendResponse) {
-      console.log(request);
       if (request.message === "test") {
         await runTests();
       } else {
         await selectLanguage(request.value);
       }
-      // sendResponse("finished");
     });
+  }
+
+  function setDefaultLanguage() {
+    // TODO: 再チャレンジ画面では言語を変更しないようにする
+    const languageSelect = document.getElementById("language_id");
+    if (languageSelect === null) return;
+
+    const defaultLanguageId = localStorage.getItem("default_language_id");
+    languageSelect.value = defaultLanguageId;
   }
 
   async function selectLanguage(languageId) {
     const languageSelect = document.getElementById("language_id");
     languageSelect.value = languageId;
+    localStorage.setItem("default_language_id", languageId);
   }
 
   async function runTests() {
