@@ -74,7 +74,6 @@
   }
 
   function isCorrect(judgeText) {
-    const isContainIncorrect = /.*不正解.*/.test(judgeText);
-    return !isContainIncorrect;
+    return judgeText.indexOf("◎") !== -1;
   }
 }
